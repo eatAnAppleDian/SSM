@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.dao.TravellerOrderMapper">
+  <resultMap id="BaseResultMap" type="com.orange.entity.TravellerOrder">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="ord_id" jdbcType="VARCHAR" property="ordId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from traveller_order
+    where id = #{id,jdbcType=VARCHAR}
+      and ord_id = #{ordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.orange.entity.TravellerOrder">
+    insert into traveller_order (id, ord_id)
+    values (#{id,jdbcType=VARCHAR}, #{ordId,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, ord_id
+    from traveller_order
+  </select>
+</mapper>

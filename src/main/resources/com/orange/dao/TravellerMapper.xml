@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.dao.TravellerMapper">
+  <resultMap id="BaseResultMap" type="com.orange.entity.Traveller">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="credentials_type" jdbcType="INTEGER" property="credentialsType" />
+    <result column="credentials_code" jdbcType="VARCHAR" property="credentialsCode" />
+    <result column="traveller_type" jdbcType="INTEGER" property="travellerType" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from traveller
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.orange.entity.Traveller">
+    insert into traveller (id, name, sex, 
+      phone_number, credentials_type, credentials_code, 
+      traveller_type)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{credentialsType,jdbcType=INTEGER}, #{credentialsCode,jdbcType=VARCHAR}, 
+      #{travellerType,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.orange.entity.Traveller">
+    update traveller
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      credentials_type = #{credentialsType,jdbcType=INTEGER},
+      credentials_code = #{credentialsCode,jdbcType=VARCHAR},
+      traveller_type = #{travellerType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, name, sex, phone_number, credentials_type, credentials_code, traveller_type
+    from traveller
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, sex, phone_number, credentials_type, credentials_code, traveller_type
+    from traveller
+  </select>
+</mapper>
